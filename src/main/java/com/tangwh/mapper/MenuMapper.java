@@ -2,6 +2,8 @@ package com.tangwh.mapper;
 
 import com.tangwh.pojo.Menu;
 
+import java.util.List;
+
 /**
  * @author  Tangweihao
  * @date  2019/12/29 13:13
@@ -19,4 +21,5 @@ public interface MenuMapper {
     int updateByPrimaryKeySelective(Menu record);
 
     int updateByPrimaryKey(Menu record);
+
 }

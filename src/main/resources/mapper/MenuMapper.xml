@@ -9,10 +9,13 @@
     <result column="component" jdbcType="VARCHAR" property="component" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="iconCls" jdbcType="VARCHAR" property="iconCls" />
-    <result column="keepAlive" jdbcType="BIT" property="keepAlive" />
-    <result column="requireAuth" jdbcType="BIT" property="requireAuth" />
+
     <result column="parentId" jdbcType="INTEGER" property="parentId" />
     <result column="enabled" jdbcType="BIT" property="enabled" />
+    <association property="meta" javaType="Meta">
+      <result column="keepAlive" jdbcType="BIT" property="keepAlive" />
+      <result column="requireAuth" jdbcType="BIT" property="requireAuth" />
+    </association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->

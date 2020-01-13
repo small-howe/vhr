@@ -2,6 +2,8 @@ package com.tangwh.pojo;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author  Tangweihao
  * @date  2019/12/29 13:13
@@ -39,15 +41,7 @@ public class Menu {
     */
     private String iconCls;
 
-    /**
-    * 
-    */
-    private Boolean keepAlive;
 
-    /**
-    * 
-    */
-    private Boolean requireAuth;
 
     /**
     * 
@@ -58,4 +52,16 @@ public class Menu {
     * 
     */
     private Boolean enabled;
+
+
+    /**
+     * 没有的字段 放在这个实体类
+     */
+    private Meta meta;
+
+    /**
+     * 前端把组件放在  router/index.js 的childen组件放着
+     */
+    private List<Meta> children;
+
 }
