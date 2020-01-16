@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.*;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -36,6 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     HrService hrService;
 
+    @Autowired
+    MyFilter myFilter;
+
+    @Autowired
+    MyDecisionManager myDecisionManager;
     /**
      * 密码加密
      *
@@ -51,6 +60,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(hrService);
     }
 
+
+    /**
+     * 使用postMan 测试 没登录的情况下 如果访问其他login如果被拦截
+     *  设置  如果访问login 不用经过security  直接过
+     */
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/login");
+    }
+
     /**
      * 所有的请求认证之后才可以访问
      *
@@ -62,7 +81,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 // 所有请求认证之后才可以访问
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
+                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+                    @Override
+                    public <O extends FilterSecurityInterceptor> O postProcess(O object) {
+                        object.setAccessDecisionManager(myDecisionManager);
+                        object.setSecurityMetadataSource(myFilter);
+
+                        return object;
+                    }
+                })
                 .and()
                 .formLogin()
                 .usernameParameter("username")
@@ -142,7 +170,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 })
                 .permitAll()
                 .and()
+
                 // 使用POSTMAN测试
-                .csrf().disable();
+                .csrf().disable()
+                 // 异常处理  没有认证  不要重定向
+                .exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPoint() {
+            @Override
+            public void commence(HttpServletRequest request, HttpServletResponse response,
+                                 AuthenticationException e) throws IOException, ServletException {
+                // 在这个方法 可以设置 你是重定向还是
+                response.setContentType("application/json;charset=UTF-8");
+                PrintWriter out = response.getWriter();
+
+                RespEntity error = RespEntity.error("访问失败");
+                if (e instanceof InsufficientAuthenticationException) {
+                    error.setMsg("请求失败,请联系管理员");
+                }
+                out.write(new ObjectMapper().writeValueAsString(error));
+                out.flush();
+                out.close();
+            }
+        });
     }
 }

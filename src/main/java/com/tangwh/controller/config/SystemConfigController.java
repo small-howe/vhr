@@ -1,7 +1,6 @@
-package com.tangwh.controller;
+package com.tangwh.controller.config;
 
 import com.tangwh.pojo.Menu;
-import com.tangwh.pojo.RespEntity;
 import com.tangwh.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

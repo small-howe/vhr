@@ -41,6 +41,8 @@ public class HrService implements UserDetailsService {
 
             throw new UsernameNotFoundException("用户名不存在");
         }
+        // 如果登录成功的话 给用户角色
+        hr.setRoles(hrextMapper.getRolesById(hr.getId()));
             return hr;
 
 

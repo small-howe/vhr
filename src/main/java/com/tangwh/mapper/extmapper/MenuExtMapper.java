@@ -15,4 +15,12 @@ public interface MenuExtMapper {
      * @return
      */
     List<Menu> getMenusByHrId(Integer id);
+
+    /**
+     * 获取所有的请求连接
+     *
+     * @return
+     */
+    List<Menu> getAllMenusWithRole();
+
 }

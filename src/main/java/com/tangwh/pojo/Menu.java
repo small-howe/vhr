@@ -64,4 +64,9 @@ public class Menu {
      */
     private List<Meta> children;
 
+    /**
+     * 角色
+     */
+    private List<Role> roles;
+
 }

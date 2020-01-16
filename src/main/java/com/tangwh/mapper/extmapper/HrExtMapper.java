@@ -1,7 +1,10 @@
 package com.tangwh.mapper.extmapper;
 
 import com.tangwh.pojo.Hr;
+import com.tangwh.pojo.Role;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @author Tangweihao
@@ -16,4 +19,11 @@ public interface HrExtMapper {
      * @return
      */
     Hr loadUserByUsername(String username);
+
+    /**
+     * 根据用户Id查 用户权限
+     * @param id
+     * @return
+     */
+    List<Role> getRolesById(Integer id);
 }

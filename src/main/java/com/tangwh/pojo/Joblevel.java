@@ -8,6 +8,10 @@ import lombok.Data;
  * @date  2019/12/29 13:13
  * @version 1.0
  */
+
+/**
+ * 职称管理表
+ */
 @Data
 public class Joblevel {
     /**
