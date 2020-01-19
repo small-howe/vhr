@@ -1,6 +1,8 @@
 package com.tangwh.pojo;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -32,6 +34,7 @@ public class Joblevel {
     /**
     * 
     */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date createDate;
 
     /**

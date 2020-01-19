@@ -173,13 +173,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 使用POSTMAN测试
                 .csrf().disable()
-                 // 异常处理  没有认证  不要重定向
+                 // 异常处理  没有认证  不要重定向  // 如果配置了这个 上面的login 登录页面就不需要了
                 .exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPoint() {
             @Override
             public void commence(HttpServletRequest request, HttpServletResponse response,
                                  AuthenticationException e) throws IOException, ServletException {
                 // 在这个方法 可以设置 你是重定向还是
                 response.setContentType("application/json;charset=UTF-8");
+                // 401 没有认证
+                response.setStatus(401);
+
                 PrintWriter out = response.getWriter();
 
                 RespEntity error = RespEntity.error("访问失败");

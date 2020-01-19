@@ -22,6 +22,7 @@ public class JoblevelController {
      */
     @GetMapping("/")
     public List<Joblevel> getAllJob() {
+
         return joblevelService.getAllJobLevels();
     }
 
@@ -53,4 +54,17 @@ public class JoblevelController {
         return RespEntity.error("删除失败");
 
     }
+
+
+    @DeleteMapping("/")
+    public RespEntity deleteJobLevelsByIds(Integer[] ids) {
+        if (joblevelService.deleteJoblevelByIds(ids) == ids.length) {
+            return RespEntity.ok("删除成功");
+
+        }
+        return RespEntity.error("删除失败");
+
+
+    }
+
 }

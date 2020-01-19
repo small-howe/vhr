@@ -16,5 +16,11 @@
     <select id="getAllJobLevels" resultMap="BaseResultMap">
               select * from joblevel;
     </select>
+    <delete id="deleteJoblevelByIds">
+  delete  from  joblevel where id in
+  <foreach collection="ids" item="id" close=")" open="(" separator=",">
+     #{id}
+  </foreach>
+    </delete>
 
 </mapper>
