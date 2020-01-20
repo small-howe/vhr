@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 职位管理
+ */
 @RestController
 @RequestMapping("/system/basic/pos")
 public class PositionController {

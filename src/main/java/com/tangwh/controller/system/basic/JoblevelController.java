@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 职称管理
+ */
 @RestController
 @RequestMapping("/system/basic/joblevel")
 public class JoblevelController {
