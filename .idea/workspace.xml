@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa86a516-3f2d-46a1-8db3-a272b0c675eb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tangwh/VhrApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tangwh/config/MyDecisionManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tangwh/config/MyFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tangwh/config/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tangwh/controller/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tangwh/controller/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tangwh/controller/config/SystemConfigController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tangwh/controller/system/basic/JoblevelController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tangwh/controller/system/basic/PermissController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tangwh/controller/system/basic/PositionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tangwh/exception/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/tangwh/VhrApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vhr-web.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vhrserver/vhr-web/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/vhrserver/vhr-model/target/" />
@@ -58,11 +42,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vhrserver/vhr-web/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="336">
+              <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -75,15 +68,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vhrserver/vhr-web/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -184,8 +168,8 @@
     <option name="jreName" value="1.8" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="97" />
-    <option name="y" value="19" />
+    <option name="x" value="338" />
+    <option name="y" value="178" />
     <option name="width" value="1620" />
     <option name="height" value="1061" />
   </component>
@@ -207,6 +191,18 @@
               <item name="vhr" type="b2602c69:ProjectViewProjectNode" />
               <item name="vhr" type="462c0819:PsiDirectoryNode" />
               <item name="vhrserver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vhr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vhr" type="462c0819:PsiDirectoryNode" />
+              <item name="vhrserver" type="462c0819:PsiDirectoryNode" />
+              <item name="vhr-model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vhr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vhr" type="462c0819:PsiDirectoryNode" />
+              <item name="vhrserver" type="462c0819:PsiDirectoryNode" />
+              <item name="vhr-service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vhr" type="b2602c69:ProjectViewProjectNode" />
@@ -273,7 +269,7 @@
       <updated>1579875820774</updated>
       <workItem from="1579875821954" duration="830000" />
       <workItem from="1579876655333" duration="159000" />
-      <workItem from="1579876816131" duration="135000" />
+      <workItem from="1579876816131" duration="401000" />
     </task>
     <task id="LOCAL-00001" summary="改变项目结构">
       <created>1579876864528</created>
@@ -282,16 +278,24 @@
       <option name="project" value="LOCAL" />
       <updated>1579876864528</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="改变项目结构">
+      <created>1579877025707</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1579877025707</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1124000" />
+    <option name="totallyTimeSpent" value="1390000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="338" y="178" width="1620" height="1061" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20746666" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24951892" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -308,9 +312,9 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="7" />
       <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4992" visible="true" weight="0.33073497" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49903783" visible="true" weight="0.32890365" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5008" side_tool="true" visible="true" weight="0.33073497" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50096214" side_tool="true" visible="true" weight="0.32890365" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="bottom" id="Version Control" order="14" />
@@ -399,8 +403,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vhrserver/vhr-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="336">
+          <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
