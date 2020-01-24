@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/vhr?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.tangwh.pojo
+  mapper-locations: classpath:mapper/*.xml,classpath:mapper/extmapper/*.xml

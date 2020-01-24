@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangwh.mapper.EmployeetrainMapper">
+  <resultMap id="BaseResultMap" type="com.tangwh.pojo.Employeetrain">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="eid" jdbcType="INTEGER" property="eid" />
+    <result column="trainDate" jdbcType="DATE" property="trainDate" />
+    <result column="trainContent" jdbcType="VARCHAR" property="trainContent" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, eid, trainDate, trainContent, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from employeetrain
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from employeetrain
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.tangwh.pojo.Employeetrain" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into employeetrain (eid, trainDate, trainContent, 
+      remark)
+    values (#{eid,jdbcType=INTEGER}, #{trainDate,jdbcType=DATE}, #{trainContent,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.tangwh.pojo.Employeetrain" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into employeetrain
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eid != null">
+        eid,
+      </if>
+      <if test="trainDate != null">
+        trainDate,
+      </if>
+      <if test="trainContent != null">
+        trainContent,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eid != null">
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="trainDate != null">
+        #{trainDate,jdbcType=DATE},
+      </if>
+      <if test="trainContent != null">
+        #{trainContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tangwh.pojo.Employeetrain">
+    <!--@mbg.generated-->
+    update employeetrain
+    <set>
+      <if test="eid != null">
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="trainDate != null">
+        trainDate = #{trainDate,jdbcType=DATE},
+      </if>
+      <if test="trainContent != null">
+        trainContent = #{trainContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tangwh.pojo.Employeetrain">
+    <!--@mbg.generated-->
+    update employeetrain
+    set eid = #{eid,jdbcType=INTEGER},
+      trainDate = #{trainDate,jdbcType=DATE},
+      trainContent = #{trainContent,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
