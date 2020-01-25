@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangwh.mapper.extmapper.DepartmentExtMapper">
+    <resultMap id="BaseResultMap" type="com.tangwh.pojo.Department">
+        <!--@mbg.generated-->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="parentId" jdbcType="INTEGER" property="parentId" />
+        <result column="depPath" jdbcType="VARCHAR" property="depPath" />
+        <result column="enabled" jdbcType="BIT" property="enabled" />
+        <result column="isParent" jdbcType="BIT" property="isParent" />
+    </resultMap>
+    <resultMap id="DepartmentWithChildren" type="Department" extends="BaseResultMap">
+        <collection property="children" ofType="Department" select="getAllDepartmentsByPrimaryId" column="id">
+
+        </collection>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`, parentId, depPath, enabled, isParent
+    </sql>
+    <select id="getAllDepartmentsByPrimaryId" resultMap="DepartmentWithChildren">
+        SELECT * FROM `department` where parentId = #{pid}
+    </select>
+    <select id="addDep" statementType="CALLABLE">
+ call    addDep(#{name,mode=IN,jdbcType=VARCHAR},#{parentId,mode=IN,jdbcType=INTEGER},#{enabled,mode=IN,jdbcType=BOOLEAN},#{result,mode=OUT,jdbcType=INTEGER},#{id,mode=OUT,jdbcType=INTEGER})
+
+    </select>
+    <select id="deleteDepById" statementType="CALLABLE">
+    call deleteDep(#{id,mode=IN,jdbcType=INTEGER},#{result,mode=OUT,jdbcType=INTEGER})
+    </select>
+</mapper>

@@ -16,3 +16,4 @@
 /bin/
 **/bin/
 **/.mvn/
+/vhr.iml
