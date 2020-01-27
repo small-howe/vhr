@@ -15,6 +15,13 @@
         <result column="userface" jdbcType="VARCHAR" property="userface" />
         <result column="remark" jdbcType="VARCHAR" property="remark" />
     </resultMap>
+    <resultMap id="HrWithRoles" type="Hr" extends="BaseResultMap">
+        <collection property="roles" ofType="Role">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
         id, `name`, phone, telephone, address, enabled, username, `password`, userface, remark
@@ -26,6 +33,18 @@
     </select>
     <select id="getRolesById" resultType="com.tangwh.pojo.Role">
 SELECT r.* FROM `role` r,hr_role hrr WHERE hrr.rid = r.`id` AND hrr.hrid = #{id}
+
+    </select>
+    <select id="getAllHrs" resultMap="HrWithRoles">
+SELECT   hr.id, hr.name, hr.phone, hr.telephone, hr.address, hr.enabled, hr.username,hr.userface, hr.remark ,r.`id` AS rid,r.`name` AS rname,r.`nameZh` AS rnameZh FROM hr
+LEFT JOIN `hr_role` hrr ON hr.`id` = hrr.`hrid`
+LEFT JOIN `role` r ON hrr.`rid` = r.`id`
+WHERE hr.id != #{hrid}
+ <if test="keywords!=null">
+     and hr.name like concat('%',#{keywords},'%')
+ </if>
+
+ order by hr.id
 
     </select>
 </mapper>

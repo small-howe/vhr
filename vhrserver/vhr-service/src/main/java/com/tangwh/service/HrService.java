@@ -1,13 +1,19 @@
 package com.tangwh.service;
 
 import com.tangwh.mapper.HrMapper;
+import com.tangwh.mapper.HrRoleMapper;
 import com.tangwh.mapper.extmapper.HrExtMapper;
+import com.tangwh.mapper.extmapper.HrRoleExtMapper;
 import com.tangwh.pojo.Hr;
+import com.tangwh.utils.HrUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author Tangweihao
@@ -23,6 +29,9 @@ public class HrService implements UserDetailsService {
 
     @Autowired
     HrMapper hrMapper;
+
+    @Autowired
+    HrRoleExtMapper hrRoleExtMapper;
 
     /**
      * 根据用户名加载对象
@@ -43,8 +52,51 @@ public class HrService implements UserDetailsService {
         }
         // 如果登录成功的话 给用户角色
         hr.setRoles(hrextMapper.getRolesById(hr.getId()));
-            return hr;
+        return hr;
 
 
+    }
+
+    /**
+     * 获取Hr 的信息  除过自己的信息
+     *
+     * @return
+     */
+    public List<Hr> getAllHrs(String keywords) {
+
+        return hrextMapper.getAllHrs(HrUtils.getCurrenHr().getId(),keywords);
+    }
+
+    /**
+     * 更新操作
+     * @param hr
+     * @return
+     */
+    public Integer updateHr(Hr hr) {
+        return hrMapper.updateByPrimaryKey(hr);
+    }
+
+    /**
+     * 更新Hr 角色 先删除原有的 再重新添加
+     * @param hrid
+     * @param rids
+     * @return
+     */
+    @Transactional
+    public boolean updateHrRole(Integer hrid, Integer[] rids) {
+          // 先删除
+        hrRoleExtMapper.deleteByHrid(hrid);
+      // 添加
+        return hrRoleExtMapper.addRole(hrid, rids) == rids.length;
+
+    }
+
+    /**
+     * 删除操作
+     * @param id
+     * @return
+     */
+    public Integer deleteHrById(Integer id) {
+        return hrMapper.deleteByPrimaryKey(id);
     }
 }

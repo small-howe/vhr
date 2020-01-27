@@ -3,6 +3,7 @@ package com.tangwh.mapper.extmapper;
 import com.tangwh.pojo.Hr;
 import com.tangwh.pojo.Role;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,4 +27,11 @@ public interface HrExtMapper {
      * @return
      */
     List<Role> getRolesById(Integer id);
+
+    /**
+     * 查询所有hr 信息 除过自己的
+     * @param hrid
+     * @return
+     */
+    List<Hr> getAllHrs(@Param("hrid") Integer hrid,@Param("keywords") String keywords);
 }
