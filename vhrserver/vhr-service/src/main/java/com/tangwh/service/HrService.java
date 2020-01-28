@@ -1,7 +1,6 @@
 package com.tangwh.service;
 
 import com.tangwh.mapper.HrMapper;
-import com.tangwh.mapper.HrRoleMapper;
 import com.tangwh.mapper.extmapper.HrExtMapper;
 import com.tangwh.mapper.extmapper.HrRoleExtMapper;
 import com.tangwh.pojo.Hr;

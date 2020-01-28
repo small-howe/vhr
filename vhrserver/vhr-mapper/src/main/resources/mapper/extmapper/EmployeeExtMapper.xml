@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangwh.mapper.extmapper.EmployeeExtMapper">
+    <resultMap id="BaseResultMap" type="com.tangwh.pojo.Employee">
+        <!--@mbg.generated-->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="gender" jdbcType="CHAR" property="gender" />
+        <result column="birthday" jdbcType="DATE" property="birthday" />
+        <result column="idCard" jdbcType="CHAR" property="idCard" />
+        <result column="wedlock" jdbcType="CHAR" property="wedlock" />
+        <result column="nationId" jdbcType="INTEGER" property="nationId" />
+        <result column="nativePlace" jdbcType="VARCHAR" property="nativePlace" />
+        <result column="politicId" jdbcType="INTEGER" property="politicId" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="departmentId" jdbcType="INTEGER" property="departmentId" />
+        <result column="jobLevelId" jdbcType="INTEGER" property="jobLevelId" />
+        <result column="posId" jdbcType="INTEGER" property="posId" />
+        <result column="engageForm" jdbcType="VARCHAR" property="engageForm" />
+        <result column="tiptopDegree" jdbcType="CHAR" property="tiptopDegree" />
+        <result column="specialty" jdbcType="VARCHAR" property="specialty" />
+        <result column="school" jdbcType="VARCHAR" property="school" />
+        <result column="beginDate" jdbcType="DATE" property="beginDate" />
+        <result column="workState" jdbcType="CHAR" property="workState" />
+        <result column="workID" jdbcType="CHAR" property="workID" />
+        <result column="contractTerm" jdbcType="DOUBLE" property="contractTerm" />
+        <result column="conversionTime" jdbcType="DATE" property="conversionTime" />
+        <result column="notWorkDate" jdbcType="DATE" property="notWorkDate" />
+        <result column="beginContract" jdbcType="DATE" property="beginContract" />
+        <result column="endContract" jdbcType="DATE" property="endContract" />
+        <result column="workAge" jdbcType="INTEGER" property="workAge" />
+    </resultMap>
+    <resultMap id="AllEmployeeInfo" type="Employee" extends="BaseResultMap">
+
+      <association property="nation" javaType="Nation">
+          <id column="nid" property="id" />
+          <result column="nname" property="name"/>
+      </association>
+        <association property="politicsstatus" javaType="Politicsstatus">
+            <id column="pid" property="id" />
+            <result column="pname" property="name"/>
+        </association>
+        <association property="department" javaType="Department">
+            <id column="did" property="id"/>
+            <result column="dname" property="name"/>
+        </association>
+        <association property="joblevel" javaType="Joblevel">
+            <id column="jid" property="id" />
+            <result column="jname" property="name"/>
+        </association>
+        <association property="position" javaType="Position">
+            <id column="posid" property="id"/>
+            <result column="posname" property="name"/>
+        </association>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId,
+        email, phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree,
+        specialty, school, beginDate, workState, workID, contractTerm, conversionTime, notWorkDate,
+        beginContract, endContract, workAge
+    </sql>
+    <select id="getEmployeByPage" resultMap="AllEmployeeInfo">
+     SELECT e.*, p.`id` AS pid , p.`name` AS pname,n.`id` AS nid ,n.`name` AS nname , d.`id` AS did ,d.`name` AS
+     dname ,j.`id` AS jid ,j.`name` AS jname , pos.`id` AS posid,pos.`name` AS posname
+ FROM employee e ,nation n,politicsstatus p,department d ,joblevel j, POSITION pos
+WHERE e.`nationId` = n.`id` AND e.`politicId` = p.`id`
+AND e.`departmentId` = d.`id` AND e.`jobLevelId` = j.`id`
+AND e.`posId`=pos.`id`
+<if test="keyewords != null and keyewords != '' ">
+and e.name like  concat('%',#{keyewords}, '%')
+</if>
+LIMIT #{page} ,#{size}
+    </select>
+    <select id="getTotal" resultType="java.lang.Long">
+  select count(*) from employee
+        <if test="keyewords != null and keyewords != '' ">
+         where  name like  concat('%',#{keyewords}, '%')
+        </if>
+    </select>
+</mapper>

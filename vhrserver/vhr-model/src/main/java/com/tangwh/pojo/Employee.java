@@ -1,6 +1,8 @@
 package com.tangwh.pojo;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -28,6 +30,7 @@ public class Employee {
     /**
     * 出生日期
     */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date birthday;
 
     /**
@@ -108,6 +111,7 @@ public class Employee {
     /**
     * 入职日期
     */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date beginDate;
 
     /**
@@ -128,25 +132,37 @@ public class Employee {
     /**
     * 转正日期
     */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date conversionTime;
 
     /**
     * 离职日期
     */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date notWorkDate;
 
     /**
     * 合同起始日期
     */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date beginContract;
 
     /**
     * 合同终止日期
     */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date endContract;
 
     /**
     * 工龄
     */
     private Integer workAge;
+
+    private Nation nation;
+    private Politicsstatus politicsstatus;
+    private Department department;
+    private Joblevel joblevel;
+    private Position position;
+
+
 }
