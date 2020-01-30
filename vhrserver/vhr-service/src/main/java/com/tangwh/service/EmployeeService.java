@@ -33,4 +33,28 @@ public class EmployeeService {
         respPageBean.setTotal(total);
         return respPageBean;
     }
+
+    public Integer addEmp(Employee employee) {
+        return employeeMapper.insertSelective(employee);
+    }
+
+    /**
+     * 查询最大工号
+     *
+     * @return
+     */
+    public Integer maxWorkID() {
+        return employeeExtMapper.maxWorkID();
+
+
+    }
+
+    /**
+     * 删除员工
+     * @param id
+     * @return
+     */
+    public Integer deleteEmpById(Integer id) {
+      return   employeeMapper.deleteByPrimaryKey(id);
+    }
 }

@@ -18,6 +18,11 @@ public class JoblevelService {
     @Autowired
     JoblevelMapper joblevelMapper;
 
+
+    /**
+     * 职称查询
+     * @return
+     */
     public List<Joblevel> getAllJobLevels() {
         return joblevelExtMapper.getAllJobLevels();
     }
@@ -39,4 +44,6 @@ public class JoblevelService {
     public Integer deleteJoblevelByIds(Integer[] ids) {
         return joblevelExtMapper.deleteJoblevelByIds(ids);
     }
+
+
 }

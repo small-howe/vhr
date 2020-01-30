@@ -48,7 +48,7 @@ public class MyFilter implements FilterInvocationSecurityMetadataSource {
                 // 如果匹配上 获取当前请求需要的角色
                 List<Role> roles = menu.getRoles();
                 // 返回需要Collection格式 所以需要转换
-                String str[] = new String[roles.size()];
+                String[] str = new String[roles.size()];
                 for (int i = 0; i <roles.size() ; i++) {
                      str[i] =roles.get(i).getName();
                 }

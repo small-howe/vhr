@@ -1,7 +1,9 @@
 package com.tangwh.mapper.extmapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface HrRoleExtMapper {
     /**
      * 根据hr 删除 信息

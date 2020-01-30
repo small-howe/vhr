@@ -39,16 +39,16 @@ public class MyDecisionManager implements AccessDecisionManager {
             for (GrantedAuthority authority : authorities) {
                 // 如果相等 那么 我需要你具备的角色
                 if (authority.getAuthority().equals(needRole)) {
-                 return;
+                    return;
                 }
             }
-
+        }
             // 如果需要的角色你都不具备 那么
             throw new AccessDeniedException("权限不足,请联系管理员");
         }
 
 
-    }
+
 
     @Override
     public boolean supports(ConfigAttribute configAttribute) {

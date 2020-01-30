@@ -81,4 +81,8 @@ LIMIT #{page} ,#{size}
          where  name like  concat('%',#{keyewords}, '%')
         </if>
     </select>
+    <select id="maxWorkID" resultType="java.lang.Integer">
+select  max(workID) from employee;
+
+    </select>
 </mapper>

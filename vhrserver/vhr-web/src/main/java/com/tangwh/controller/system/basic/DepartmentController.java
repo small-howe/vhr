@@ -38,7 +38,7 @@ public class DepartmentController {
     public RespEntity addDep(@RequestBody Department dep){
         departmentService.addDep(dep);
         if (dep.getResult()==1){
-            return RespEntity.ok("添加成功");
+            return RespEntity.ok("添加成功",dep);
         }
         return RespEntity.error("添加失败");
     }
