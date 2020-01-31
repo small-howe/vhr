@@ -68,9 +68,12 @@ public class MenuService {
 
     @Transactional
     public boolean updateMenuRole(Integer rid, Integer[] mids) {
-// 先删除原来的
+        // 先删除原来的
         menuRoleExtMapper.deleeByRid(rid);
         //重新添加
+        if (mids == null || mids.length == 0) {
+            return true;
+        }
         Integer result = menuRoleExtMapper.insertRecord(rid, mids);
         return result==mids.length;
     }

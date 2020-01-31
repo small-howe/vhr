@@ -2,9 +2,14 @@ package com.tangwh.controller.emp;
 
 import com.tangwh.pojo.*;
 import com.tangwh.service.*;
+import com.tangwh.utils.POIUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -145,4 +150,58 @@ public class EmpBasicController {
         }
         return RespEntity.error("删除失败");
     }
+
+
+    /**
+     * 修改操作
+     * @param employee
+     * @return
+     */
+    @PutMapping("/")
+    public RespEntity updateEmp(@RequestBody Employee employee){
+        if (employeeService.updateEmp(employee) == 1){
+            return RespEntity.ok("更新成功");
+        }
+        return RespEntity.error("更新失败");
+
+    }
+
+
+    /**
+     * Excel导出数据(下载)
+     * @return
+     */
+    @GetMapping("/export")
+    public ResponseEntity<byte[]> exportData(){
+        // 查到所有的数据
+        List<Employee> list = (List<Employee>) employeeService.getEmployeByPage(null,null,null).getData();
+
+        return POIUtils.employee2Excle(list);
+
+    }
+
+    /**
+     * 导入数据(上传)
+     * @param file
+     * @return
+     */
+    @PostMapping("/import")
+    public RespEntity importData(MultipartFile file) throws IOException {
+   // 假上传
+//    file.transferTo(new File("E:\\javaboy.xls"));
+        // 解析file
+        List<Employee> list = POIUtils.exlce2Employee(file,nationService.getAllNations(),politicsstatusService.getAllPoliticsstatus()
+        ,departmentService.getAllDepartmentsWithOutChildren(),positionService.getAllPositions(),
+                joblevelService.getAllJobLevels());
+
+
+        for (Employee employee : list) {
+            System.out.println(employee);
+        }
+        return RespEntity.ok("上传成功");
+
+
+
+    }
+
 }

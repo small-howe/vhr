@@ -73,7 +73,9 @@ AND e.`posId`=pos.`id`
 <if test="keyewords != null and keyewords != '' ">
 and e.name like  concat('%',#{keyewords}, '%')
 </if>
-LIMIT #{page} ,#{size}
+        <if test="page !=null and size!=null">
+           LIMIT #{page} ,#{size}
+        </if>
     </select>
     <select id="getTotal" resultType="java.lang.Long">
   select count(*) from employee

@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author  Tangweihao
@@ -25,6 +26,26 @@ public class Department {
     * 部门名称
     */
     private String name;
+
+    public Department(String name) {
+        this.name = name;
+    }
+
+    public Department() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {return true;}
+        if (o == null || getClass() != o.getClass()) {return false;}
+        Department that = (Department) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     /**
     *  所在部门父类的id

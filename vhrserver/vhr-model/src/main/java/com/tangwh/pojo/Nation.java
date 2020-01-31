@@ -1,6 +1,10 @@
 package com.tangwh.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Objects;
 
 /**
  * @author  Tangweihao
@@ -8,6 +12,7 @@ import lombok.Data;
  * @version 1.0
  */
 @Data
+@NoArgsConstructor
 public class Nation {
     /**
     * 
@@ -18,4 +23,26 @@ public class Nation {
     * 
     */
     private String name;
+
+    public Nation(String name) {
+        this.name = name;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Nation nation = (Nation) o;
+        return name.equals(nation.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }

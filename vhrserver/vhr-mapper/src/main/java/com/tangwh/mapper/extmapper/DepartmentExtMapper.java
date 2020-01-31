@@ -25,4 +25,6 @@ public interface DepartmentExtMapper {
      * @param dep
      */
     void deleteDepById(Department dep);
+
+    List<Department> getAllDepartmentsWithOutChildren();
 }

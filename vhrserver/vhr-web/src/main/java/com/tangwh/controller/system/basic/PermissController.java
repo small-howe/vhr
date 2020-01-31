@@ -84,6 +84,11 @@ public class PermissController {
 
     }
 
+    /**
+     * 删除操作
+     * @param rid
+     * @return
+     */
     @DeleteMapping("/role/{rid}")
     public RespEntity deleteRoleById(@PathVariable Integer rid){
 

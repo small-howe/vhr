@@ -48,4 +48,14 @@ public class DepartmentService {
     public void deleteDepById(Department dep) {
         departmentExtMapper.deleteDepById(dep);
     }
+
+    /**
+     * 查询
+     * @return
+     */
+    public List<Department> getAllDepartmentsWithOutChildren() {
+
+        return departmentExtMapper.getAllDepartmentsWithOutChildren();
+
+    }
 }

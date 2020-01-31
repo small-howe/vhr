@@ -1,6 +1,9 @@
 package com.tangwh.pojo;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Objects;
 
 /**
  * @author  Tangweihao
@@ -8,6 +11,7 @@ import lombok.Data;
  * @version 1.0
  */
 @Data
+@NoArgsConstructor
 public class Politicsstatus {
     /**
     * 
@@ -18,4 +22,22 @@ public class Politicsstatus {
     * 
     */
     private String name;
+
+    public Politicsstatus(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {return true;}
+
+        if (o == null || getClass() != o.getClass()) {return false;}
+        Politicsstatus that = (Politicsstatus) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }

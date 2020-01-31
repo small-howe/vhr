@@ -7,6 +7,9 @@ import com.tangwh.pojo.RespPageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +20,14 @@ public class EmployeeService {
 
     @Autowired
     EmployeeMapper employeeMapper;
+
+    // 日期格式化
+
+    SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+    SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+    //计算结果保留两位
+
+    DecimalFormat decimalFormat = new DecimalFormat("##.00");
 
     @Autowired
     EmployeeExtMapper employeeExtMapper;
@@ -34,7 +45,23 @@ public class EmployeeService {
         return respPageBean;
     }
 
+    /**
+     * 添加操作
+     *
+     * @param employee
+     * @return
+     */
     public Integer addEmp(Employee employee) {
+        // 拿到合同起始日期
+        Date beginContract = employee.getBeginContract();
+        // 拿到 合同终止日期
+        Date endContract = employee.getEndContract();
+        // (终止的日期年 -  起始日期年)*12 +
+     double month = (Double.parseDouble(yearFormat.format(endContract)) - Double.parseDouble(yearFormat.format(beginContract)))*12+
+                (Double.parseDouble(monthFormat.format(endContract))-Double.parseDouble(monthFormat.format(beginContract)));
+
+     // 算出来的 合同年限
+     employee.setContractTerm(Double.parseDouble(decimalFormat.format(month/12)));
         return employeeMapper.insertSelective(employee);
     }
 
@@ -55,6 +82,16 @@ public class EmployeeService {
      * @return
      */
     public Integer deleteEmpById(Integer id) {
-      return   employeeMapper.deleteByPrimaryKey(id);
+        return employeeMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 修改操作
+     *
+     * @param employee
+     * @return
+     */
+    public Integer updateEmp(Employee employee) {
+        return employeeMapper.updateByPrimaryKeySelective(employee);
     }
 }
