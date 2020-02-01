@@ -15,4 +15,7 @@ public interface EmployeeExtMapper {
     Long getTotal(String keyewords);
 
     Integer maxWorkID();
+
+
+    Integer addEmps(@Param("list") List<Employee> list);
 }

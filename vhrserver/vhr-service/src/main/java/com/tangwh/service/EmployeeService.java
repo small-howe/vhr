@@ -94,4 +94,14 @@ public class EmployeeService {
     public Integer updateEmp(Employee employee) {
         return employeeMapper.updateByPrimaryKeySelective(employee);
     }
+
+    /**
+     *  将Excel 解析出来的结果 添加到数据库中
+     * @param list
+     * @return
+     */
+    public Integer addEmps(List<Employee> list) {
+
+        return employeeExtMapper.addEmps(list);
+    }
 }

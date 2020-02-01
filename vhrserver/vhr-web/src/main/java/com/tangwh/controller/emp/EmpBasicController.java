@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -195,10 +194,16 @@ public class EmpBasicController {
                 joblevelService.getAllJobLevels());
 
 
-        for (Employee employee : list) {
-            System.out.println(employee);
+        // 解析成功后 添加到数据库中
+        if (employeeService.addEmps(list) == list.size()) {
+
+
+            return RespEntity.ok("上传成功");
         }
-        return RespEntity.ok("上传成功");
+
+        return RespEntity.error("上传失败");
+
+
 
 
 

@@ -88,6 +88,7 @@ public class POIUtils {
         sheet.setColumnWidth(22, 14 * 256);
         sheet.setColumnWidth(23, 15 * 256);
         sheet.setColumnWidth(24, 15 * 256);
+        sheet.setColumnWidth(25, 20 * 256);
         // 6. 创建标题行
         HSSFRow r0 = sheet.createRow(0);
 
@@ -195,7 +196,7 @@ public class POIUtils {
         c24.setCellStyle(headerStyle);
         c24.setCellValue("合同终止日期");
 
-        HSSFCell c25 = r0.createCell(24);
+        HSSFCell c25 = r0.createCell(25);
         c25.setCellStyle(headerStyle);
         c25.setCellValue("转正日期");
 
@@ -278,14 +279,14 @@ public class POIUtils {
     public static List<Employee> exlce2Employee(MultipartFile file, List<Nation> allNations, List<Politicsstatus> allPoliticsstatus, List<Department> allDepartments, List<Position> allPositions, List<Joblevel> allJobLevels) {
 
         List<Employee> list = new ArrayList<>();
-        Employee employee = null;
+        Employee employee;
 
         try {
             // 1. 创建 workbook对象
             HSSFWorkbook workbook = new HSSFWorkbook(file.getInputStream());
             // 2. 获取workbook 中表单数量
             int numberOfSheets = workbook.getNumberOfSheets();
-            for (int i = 0; i < numberOfSheets; i++) {
+      wei:    for (int i = 0; i < numberOfSheets; i++) {
                 // 3. 获取表单
                 HSSFSheet sheet = workbook.getSheetAt(i);
                 // 4. 获取表单行
@@ -296,7 +297,7 @@ public class POIUtils {
                     }
                     // 6. 获取行
                     HSSFRow row = sheet.getRow(j);
-                    if (row == null) {
+                    if (row == null  ) {
 
                         continue; //放值数据中间有空行
                     }
@@ -306,6 +307,9 @@ public class POIUtils {
                     for (int k = 0; k < physicalNumberOfCells; k++) {
                         // 获取列
                         HSSFCell cell = row.getCell(k);
+                        if (cell == null){
+                            break wei;
+                        }
                         // 判断列的类型
                         switch (cell.getCellType()) {
                             // 如果是字符串
@@ -425,8 +429,6 @@ public class POIUtils {
                                         // 转正日期
                                         employee.setConversionTime(cell.getDateCellValue());
                                         break;
-
-
                                 }
 
                             }
