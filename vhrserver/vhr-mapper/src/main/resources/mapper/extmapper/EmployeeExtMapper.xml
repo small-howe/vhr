@@ -70,18 +70,63 @@
 WHERE e.`nationId` = n.`id` AND e.`politicId` = p.`id`
 AND e.`departmentId` = d.`id` AND e.`jobLevelId` = j.`id`
 AND e.`posId`=pos.`id`
-<if test="keyewords != null and keyewords != '' ">
+<if test="emp.name != null and emp.name != ''">
 and e.name like  concat('%',#{keyewords}, '%')
 </if>
+        <if test="emp.politicId != null and emp.politicId != ''">
+            and e.politicId=#{emp.politicId}
+        </if>
+        <if test="emp.nationId != null">
+            and e.nationId=#{emp.nationId}
+        </if>
+        <if test="emp.jobLevelId != null">
+            and e.jobLevelId=#{emp.jobLevelId}
+        </if>
+        <if test="emp.posId != null">
+            and e.posId=#{emp.posId}
+        </if>
+        <if test="emp.engageForm != null and emp.engageForm!=''">
+            and e.engageForm=#{emp.engageForm}
+        </if>
+        <if test="emp.departmentId != null">
+            and e.departmentId=#{emp.departmentId}
+        </if>
+        <if test="beginDateScope != null">
+            and e.beginDate between #{beginDateScope[0]} and #{beginDateScope[1]}
+        </if>
+
         <if test="page !=null and size!=null">
            LIMIT #{page} ,#{size}
         </if>
     </select>
     <select id="getTotal" resultType="java.lang.Long">
-  select count(*) from employee
-        <if test="keyewords != null and keyewords != '' ">
-         where  name like  concat('%',#{keyewords}, '%')
+  select count(*) from employee e
+  <where>
+        <if test="emp.name != null and emp.name != ''">
+            and e.name like  concat('%',#{keyewords}, '%')
         </if>
+        <if test="emp.politicId != null and emp.politicId != ''">
+            and e.politicId=#{emp.politicId}
+        </if>
+        <if test="emp.nationId != null">
+            and e.nationId=#{emp.nationId}
+        </if>
+        <if test="emp.jobLevelId != null">
+            and e.jobLevelId=#{emp.jobLevelId}
+        </if>
+        <if test="emp.posId != null">
+            and e.posId=#{emp.posId}
+        </if>
+      <if test="emp.departmentId != null">
+          and e.departmentId=#{emp.departmentId}
+      </if>
+      <if test="emp.engageForm != null and emp.engageForm!=''">
+          and e.engageForm=#{emp.engageForm}
+      </if>
+      <if test="beginDateScope != null">
+          and e.beginDate between #{beginDateScope[0]} and #{beginDateScope[1]}
+      </if>
+  </where>
     </select>
     <select id="maxWorkID" resultType="java.lang.Integer">
 select  max(workID) from employee;

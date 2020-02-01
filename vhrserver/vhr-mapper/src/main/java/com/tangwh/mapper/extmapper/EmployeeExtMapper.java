@@ -4,15 +4,17 @@ import com.tangwh.pojo.Employee;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 
 @Mapper
 public interface EmployeeExtMapper {
 
-    List<Employee> getEmployeByPage(@Param("page") Integer page,@Param("size") Integer size,@Param("keyewords") String keyewords);
+    List<Employee> getEmployeByPage(@Param("page") Integer page, @Param("size") Integer size,
+                                    @Param("emp")Employee employee, @Param("beginDateScope") Date[] beginDateScope);
 
-    Long getTotal(String keyewords);
+    Long getTotal(@Param("emp")Employee employee, @Param("beginDateScope") Date[] beginDateScope);
 
     Integer maxWorkID();
 

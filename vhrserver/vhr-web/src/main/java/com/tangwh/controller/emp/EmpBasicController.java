@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,9 +50,11 @@ public class EmpBasicController {
      */
     @GetMapping("/")
     public RespPageBean getEmployeByPage(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue =
-            "10") Integer size,String keyewords) {
+            "10") Integer size, Employee employee, Date[] beginDateScope) {
 
-        return employeeService.getEmployeByPage(page, size,keyewords);
+        System.err.println(employee);
+        System.err.println(Arrays.toString(beginDateScope));
+        return employeeService.getEmployeByPage(page, size,employee,beginDateScope);
     }
 
     /**
@@ -173,7 +177,7 @@ public class EmpBasicController {
     @GetMapping("/export")
     public ResponseEntity<byte[]> exportData(){
         // 查到所有的数据
-        List<Employee> list = (List<Employee>) employeeService.getEmployeByPage(null,null,null).getData();
+        List<Employee> list = (List<Employee>) employeeService.getEmployeByPage(null,null,null,null).getData();
 
         return POIUtils.employee2Excle(list);
 

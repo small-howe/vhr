@@ -32,13 +32,13 @@ public class EmployeeService {
     @Autowired
     EmployeeExtMapper employeeExtMapper;
 
-    public RespPageBean getEmployeByPage(Integer page, Integer size,String keyewords) {
+    public RespPageBean getEmployeByPage(Integer page, Integer size,Employee employee,Date[] beginDateScope) {
         if (page != null && size != null) {
             page = (page - 1) * size;
         }
-        List<Employee> data = employeeExtMapper.getEmployeByPage(page, size,keyewords);
+        List<Employee> data = employeeExtMapper.getEmployeByPage(page, size,employee,beginDateScope);
         // 获取总记录数
-        Long total = employeeExtMapper.getTotal(keyewords);
+        Long total = employeeExtMapper.getTotal(employee,beginDateScope);
         RespPageBean respPageBean = new RespPageBean();
         respPageBean.setData(data);
         respPageBean.setTotal(total);
