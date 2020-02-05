@@ -1,5 +1,6 @@
 package com.tangwh.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -11,7 +12,7 @@ import lombok.Data;
  * @version 1.0
  */
 @Data
-public class Employee {
+public class Employee implements  Serializable {
     /**
     * 员工编号
     */

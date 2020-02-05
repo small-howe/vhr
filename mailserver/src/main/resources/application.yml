@@ -1,0 +1,22 @@
+spring:
+  mail:
+    host: smtp.163.com
+    username: t2678691035@163.com
+    #授权码:
+    password: twh123456
+    default-encoding: UTF-8
+    protocol:
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            # 邮件的日志过程 打印
+        debug: true
+  rabbitmq:
+    host: 192.168.91.130
+    username: guest
+    password: guest
+    port: 5672
+server:
+  port: 8081
+

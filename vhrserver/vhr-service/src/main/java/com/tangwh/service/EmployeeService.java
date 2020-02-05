@@ -4,6 +4,7 @@ import com.tangwh.mapper.EmployeeMapper;
 import com.tangwh.mapper.extmapper.EmployeeExtMapper;
 import com.tangwh.pojo.Employee;
 import com.tangwh.pojo.RespPageBean;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,11 @@ public class EmployeeService {
     @Autowired
     EmployeeMapper employeeMapper;
 
+    // 发送消息
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+
     // 日期格式化
 
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
@@ -33,9 +39,11 @@ public class EmployeeService {
     EmployeeExtMapper employeeExtMapper;
 
     public RespPageBean getEmployeByPage(Integer page, Integer size,Employee employee,Date[] beginDateScope) {
-        if (page != null && size != null) {
-            page = (page - 1) * size;
-        }
+            if (page != null && size != null) {
+                page = (page - 1) * size;
+            }
+        System.err.println(employee);
+
         List<Employee> data = employeeExtMapper.getEmployeByPage(page, size,employee,beginDateScope);
         // 获取总记录数
         Long total = employeeExtMapper.getTotal(employee,beginDateScope);
@@ -62,7 +70,18 @@ public class EmployeeService {
 
      // 算出来的 合同年限
      employee.setContractTerm(Double.parseDouble(decimalFormat.format(month/12)));
-        return employeeMapper.insertSelective(employee);
+        int result = employeeMapper.insertSelective(employee);
+
+        // 查询 职位id 对应的名称
+        if (result==1){
+
+        Employee emp =   employeeExtMapper.getEmployeById(employee.getId());
+        // 发送消息 参数一:队列名, 参数二 : 发送的东西
+        rabbitTemplate.convertAndSend("javaboy.mail.welcome",emp);
+        }
+
+        return result;
+
     }
 
     /**
@@ -104,4 +123,6 @@ public class EmployeeService {
 
         return employeeExtMapper.addEmps(list);
     }
+
+
 }

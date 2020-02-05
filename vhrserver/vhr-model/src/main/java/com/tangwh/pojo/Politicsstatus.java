@@ -3,6 +3,7 @@ package com.tangwh.pojo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Objects;
  */
 @Data
 @NoArgsConstructor
-public class Politicsstatus {
+public class Politicsstatus implements Serializable {
     /**
     * 
     */

@@ -1,6 +1,8 @@
 package com.tangwh.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author  Tangweihao

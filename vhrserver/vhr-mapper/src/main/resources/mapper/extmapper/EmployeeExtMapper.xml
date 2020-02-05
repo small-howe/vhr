@@ -70,9 +70,10 @@
 WHERE e.`nationId` = n.`id` AND e.`politicId` = p.`id`
 AND e.`departmentId` = d.`id` AND e.`jobLevelId` = j.`id`
 AND e.`posId`=pos.`id`
-<if test="emp.name != null and emp.name != ''">
-and e.name like  concat('%',#{keyewords}, '%')
-</if>
+        <if test="emp.name !=null and emp.name!='' ">
+            and e.name like concat('%',#{emp.name} ,'%')
+        </if>
+
         <if test="emp.politicId != null and emp.politicId != ''">
             and e.politicId=#{emp.politicId}
         </if>
@@ -103,7 +104,7 @@ and e.name like  concat('%',#{keyewords}, '%')
   select count(*) from employee e
   <where>
         <if test="emp.name != null and emp.name != ''">
-            and e.name like  concat('%',#{keyewords}, '%')
+            and e.name like  concat('%',#{emp.name} , '%')
         </if>
         <if test="emp.politicId != null and emp.politicId != ''">
             and e.politicId=#{emp.politicId}
@@ -157,5 +158,13 @@ values <foreach collection="list" separator="," item="emp">
         )
     </foreach>
     </insert>
+    <select id="getEmployeById" resultMap="AllEmployeeInfo">
+     SELECT e.*, p.`id` AS pid , p.`name` AS pname,n.`id` AS nid ,n.`name` AS nname , d.`id` AS did ,d.`name` AS
+     dname ,j.`id` AS jid ,j.`name` AS jname , pos.`id` AS posid,pos.`name` AS posname
+ FROM employee e ,nation n,politicsstatus p,department d ,joblevel j, POSITION pos
+WHERE e.`nationId` = n.`id` AND e.`politicId` = p.`id`
+AND e.`departmentId` = d.`id` AND e.`jobLevelId` = j.`id`
+AND e.`posId`=pos.`id` and e.id=#{id}
+    </select>
 
 </mapper>

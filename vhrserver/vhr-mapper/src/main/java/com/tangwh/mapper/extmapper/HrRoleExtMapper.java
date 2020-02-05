@@ -1,7 +1,10 @@
 package com.tangwh.mapper.extmapper;
 
+import com.tangwh.pojo.Hr;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface HrRoleExtMapper {

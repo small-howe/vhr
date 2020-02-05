@@ -20,4 +20,6 @@ public interface EmployeeExtMapper {
 
 
     Integer addEmps(@Param("list") List<Employee> list);
+
+    Employee getEmployeById(Integer id);
 }

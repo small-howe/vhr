@@ -3,10 +3,17 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     username: root
     password: root
-    url: jdbc:mysql://localhost:3306/vhr?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/vhr?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
+  rabbitmq:
+    host: 192.168.91.130
+    username: guest
+    password: guest
+    port: 5672
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: com.tangwh.pojo
   mapper-locations: classpath:mapper/*.xml,classpath:mapper/extmapper/*.xml
+
+

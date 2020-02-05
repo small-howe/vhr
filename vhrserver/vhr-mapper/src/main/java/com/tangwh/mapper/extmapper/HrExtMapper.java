@@ -34,4 +34,13 @@ public interface HrExtMapper {
      * @return
      */
     List<Hr> getAllHrs(@Param("hrid") Integer hrid,@Param("keywords") String keywords);
+
+
+    /**
+     * 查询所有hr 信息  不包含自己
+     * @param id
+     * @return
+     */
+
+    List<Hr> getAllHrsExceptCurrentHr(Integer id);
 }

@@ -207,7 +207,7 @@ public class POIUtils {
             HSSFRow row = sheet.createRow(i + 1);
             row.createCell(0).setCellValue(emp.getId());
             row.createCell(1).setCellValue(emp.getName());
-            row.createCell(2).setCellValue(emp.getWedlock());
+            row.createCell(2).setCellValue(emp.getWorkID());
             row.createCell(3).setCellValue(emp.getGender());
 
             // 日期

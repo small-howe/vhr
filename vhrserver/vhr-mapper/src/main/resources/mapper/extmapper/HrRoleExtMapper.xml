@@ -20,4 +20,5 @@ delete from hr_role where hrid = #{hrid}
      (#{hrid} ,#{rid})
  </foreach>
     </insert>
+
 </mapper>

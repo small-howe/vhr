@@ -2,6 +2,7 @@ package com.tangwh.pojo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,7 +17,7 @@ import java.util.Objects;
  * 部门管理表
  */
 @Data
-public class Department {
+public class Department implements Serializable {
     /**
     *  部门id
     */

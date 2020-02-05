@@ -58,8 +58,7 @@ public class EmpBasicController {
     }
 
     /**
-     * 添加员工
-     *
+     * 添加员工  并发送入职邮件
      * @param employee
      * @return
      */
@@ -175,9 +174,10 @@ public class EmpBasicController {
      * @return
      */
     @GetMapping("/export")
-    public ResponseEntity<byte[]> exportData(){
+    public ResponseEntity<byte[]> exportData(Employee employee){
+
         // 查到所有的数据
-        List<Employee> list = (List<Employee>) employeeService.getEmployeByPage(null,null,null,null).getData();
+        List<Employee> list = (List<Employee>) employeeService.getEmployeByPage(null,null,employee,null).getData();
 
         return POIUtils.employee2Excle(list);
 
@@ -196,6 +196,7 @@ public class EmpBasicController {
         List<Employee> list = POIUtils.exlce2Employee(file,nationService.getAllNations(),politicsstatusService.getAllPoliticsstatus()
         ,departmentService.getAllDepartmentsWithOutChildren(),positionService.getAllPositions(),
                 joblevelService.getAllJobLevels());
+
 
 
         // 解析成功后 添加到数据库中

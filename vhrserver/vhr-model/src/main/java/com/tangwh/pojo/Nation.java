@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -12,8 +13,7 @@ import java.util.Objects;
  * @version 1.0
  */
 @Data
-@NoArgsConstructor
-public class Nation {
+public class Nation implements Serializable {
     /**
     * 
     */
@@ -28,6 +28,8 @@ public class Nation {
         this.name = name;
     }
 
+    public Nation() {
+    }
 
     @Override
     public boolean equals(Object o) {

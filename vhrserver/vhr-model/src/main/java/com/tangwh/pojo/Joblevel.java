@@ -1,5 +1,6 @@
 package com.tangwh.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ import lombok.Data;
  * 职称管理表
  */
 @Data
-public class Joblevel {
+public class Joblevel implements Serializable {
     /**
     * 
     */
