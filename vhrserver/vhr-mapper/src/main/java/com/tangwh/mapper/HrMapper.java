@@ -1,6 +1,7 @@
 package com.tangwh.mapper;
 
 import com.tangwh.pojo.Hr;
+import com.tangwh.pojo.HrTest;
 
 /**
  * @author  Tangweihao
@@ -20,10 +21,5 @@ public interface HrMapper {
 
     int updateByPrimaryKey(Hr record);
 
-    /**
-     * 自 通过用户名查询
-     * @param username
-     * @return
-     */
-    Hr loadUserByUsername(String username);
+
 }

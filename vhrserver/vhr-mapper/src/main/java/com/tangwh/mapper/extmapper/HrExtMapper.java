@@ -43,4 +43,7 @@ public interface HrExtMapper {
      */
 
     List<Hr> getAllHrsExceptCurrentHr(Integer id);
+
+
+    String selectPwd();
 }

@@ -7,6 +7,7 @@ import lombok.Data;
  * @author  Tangweihao
  * @date  2019/12/29 13:14
  * @version 1.0
+ *  工资账号表
  */
 @Data
 public class Salary {

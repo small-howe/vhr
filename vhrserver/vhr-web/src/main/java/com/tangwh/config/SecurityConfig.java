@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
@@ -53,11 +54,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     VerificationCodeFilter verificationCodeFilter;
     /**
      * 密码加密
-     *
+     *BCryptPasswordEncoder
      * @return
      */
     @Bean
-    PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder(){
+
         return new BCryptPasswordEncoder();
     }
 
@@ -88,7 +90,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         // 把验证码加在 判断密码之前
-        http.addFilterBefore(verificationCodeFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(verificationCodeFilter,
+                UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
                 // 所有请求认证之后才可以访问
@@ -121,7 +124,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                         // 登录成功hr对象 将要返回给前台
                         Hr hr = (Hr) authentication.getPrincipal();
-                          // 密码不能封返回
+                          // 密码不能返回给前端
                         hr.setPassword(null);
                         RespEntity ok = RespEntity.ok("登录成功", hr);
 

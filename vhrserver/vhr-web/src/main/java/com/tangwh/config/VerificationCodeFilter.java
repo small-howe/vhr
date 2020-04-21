@@ -41,7 +41,6 @@ public class VerificationCodeFilter extends GenericFilter {
             String verify_code = (String) request.getSession().getAttribute("verify_code");
 
 
-
             if (code == null || "".equals(code) || !verify_code.toLowerCase().equals(code.toLowerCase())){
 
                 // 验证码不正确

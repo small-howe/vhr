@@ -11,6 +11,9 @@ public class VhrApplicationTests {
 
     @Test
    public void contextLoads() {
+
+
+        System.out.println(System.currentTimeMillis());
     }
 
 }

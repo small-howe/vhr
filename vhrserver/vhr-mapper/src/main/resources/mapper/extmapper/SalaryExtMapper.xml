@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tangwh.mapper.extmapper.SalaryExtMapper">
+    <resultMap id="BaseResultMap" type="com.tangwh.pojo.Salary">
+        <!--@mbg.generated-->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="basicSalary" jdbcType="INTEGER" property="basicSalary" />
+        <result column="bonus" jdbcType="INTEGER" property="bonus" />
+        <result column="lunchSalary" jdbcType="INTEGER" property="lunchSalary" />
+        <result column="trafficSalary" jdbcType="INTEGER" property="trafficSalary" />
+        <result column="allSalary" jdbcType="INTEGER" property="allSalary" />
+        <result column="pensionBase" jdbcType="INTEGER" property="pensionBase" />
+        <result column="pensionPer" jdbcType="REAL" property="pensionPer" />
+        <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+        <result column="medicalBase" jdbcType="INTEGER" property="medicalBase" />
+        <result column="medicalPer" jdbcType="REAL" property="medicalPer" />
+        <result column="accumulationFundBase" jdbcType="INTEGER" property="accumulationFundBase" />
+        <result column="accumulationFundPer" jdbcType="REAL" property="accumulationFundPer" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+    </resultMap>
+    <select id="getAllSalaries" resultMap="BaseResultMap">
+
+    </select>
+
+</mapper>

@@ -13,6 +13,7 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="userface" jdbcType="VARCHAR" property="userface" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -20,8 +21,9 @@
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
+    select
+
+  <include refid="Base_Column_List" />
     from hr
     where id = #{id,jdbcType=INTEGER}
   </select>

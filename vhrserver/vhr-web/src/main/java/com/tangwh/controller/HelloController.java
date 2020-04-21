@@ -1,5 +1,10 @@
 package com.tangwh.controller;
 
+import com.tangwh.mapper.HrMapper;
+import com.tangwh.mapper.extmapper.HrExtMapper;
+import com.tangwh.pojo.Hr;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +23,17 @@ public class HelloController {
         return "Hello";
     }
 
+
+    @Autowired
+    HrExtMapper hrExtMapper;
+
     @GetMapping("/employee/basic/hello")
     public String hello2(){
+
+      String hr = hrExtMapper.selectPwd();
+
+        System.out.println(hr);
+
 
         return "/employee/basic/hello";
     }

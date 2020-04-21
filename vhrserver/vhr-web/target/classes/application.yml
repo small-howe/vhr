@@ -16,4 +16,8 @@ mybatis:
   type-aliases-package: com.tangwh.pojo
   mapper-locations: classpath:mapper/*.xml,classpath:mapper/extmapper/*.xml
 
+fastdfs:
+  nginx:
+    host: http://192.168.91.130/
+
 

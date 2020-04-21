@@ -1,8 +1,6 @@
 package com.tangwh.pojo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,59 +16,57 @@ import java.util.List;
  * @version 1.0
  */
 // 用户类(表)
-
-public class Hr implements UserDetails{
-
+public class Hr implements UserDetails, Serializable {
 
     /**
-    * hrID
-    */
+     * hrID
+     */
     private Integer id;
 
     /**
-    * 姓名
-    */
+     * 姓名
+     */
     private String name;
 
     /**
-    * 手机号码
-    */
+     * 手机号码
+     */
     private String phone;
 
     /**
-    * 住宅电话
-    */
+     * 住宅电话
+     */
     private String telephone;
 
     /**
-    * 联系地址
-    */
+     * 联系地址
+     */
     private String address;
 
     /**
-    * 
-    */
+     *
+     */
 
     private Boolean enabled;
 
     /**
-    * 用户名
-    */
+     * 用户名
+     */
     private String username;
 
     /**
-    * 密码
-    */
+     * 密码
+     */
     private String password;
 
     /**
-    * 
-    */
+     *
+     */
     private String userface;
 
     /**
-    * 
-    */
+     *
+     */
     private String remark;
 
     private List<Role> roles;

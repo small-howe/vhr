@@ -40,6 +40,8 @@ public class LoginController {
         BufferedImage image = code.getImage();
         String text = code.getText();
 
+        System.err.println(text);
+
         session.setAttribute("verify_code", text);
 
 
