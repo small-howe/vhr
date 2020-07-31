@@ -11,54 +11,15 @@ import java.util.List;
  */
 @Data
 public class Menu {
-    /**
-    * 
-    */
     private Integer id;
-
-    /**
-    * 
-    */
     private String url;
-
-    /**
-    * 
-    */
     private String path;
-
-    /**
-    * 
-    */
     private String component;
-
-    /**
-    * 
-    */
     private String name;
-
-    /**
-    * 
-    */
     private String iconCls;
-
-
-
-    /**
-    * 
-    */
     private Integer parentId;
-
-    /**
-    * 
-    */
     private Boolean enabled;
-
-
-    /**
-     * 没有的字段 放在这个实体类
-     */
     private Meta meta;
-
     /**
      * 前端把组件放在  router/index.js 的childen组件放着
      */

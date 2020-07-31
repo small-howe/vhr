@@ -61,7 +61,6 @@ public class VerificationCode {
         g2.fillRect(0, 0, width, height);
         return image;
     }
-
     public BufferedImage getImage() {
         BufferedImage image = createImage();
         Graphics2D g2 = (Graphics2D) image.getGraphics();
@@ -78,7 +77,6 @@ public class VerificationCode {
         drawLine(image);
         return image;
     }
-
     /**
      * 绘制干扰线
      *

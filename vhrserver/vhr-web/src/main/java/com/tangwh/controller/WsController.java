@@ -23,8 +23,14 @@ public class WsController {
     // 处理前端发送消息的方法
 
                         //principal 获取当前 的用户
+
     @MessageMapping("/ws/chat")
     public void handleMsg(Authentication authentication, ChatMsg chatMsg){
+
+        System.out.println("请求经过");
+
+
+
         Hr hr = (Hr) authentication.getPrincipal();
         // 获取消息从哪来
         chatMsg.setFrom(hr.getUsername());

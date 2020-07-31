@@ -41,16 +41,15 @@ public class HrService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Hr hr1 = hrMapper.selectByPrimaryKey(3);
+//        Hr hr = hrMapper.selectByPrimaryKey(5);
 
 //        System.out.println(hr.toString());
 
         Hr hr = hrextMapper.loadUserByUsername(username);
-      //  System.out.println(hr.toString());
 
 
 
-//       hr.setPassword("$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm");
+//       hr.setPassword("$2a$10$oY791haTupQQyfBTEaEDRe0Erq1l.FQKPWosPGX./k2WCBpiyHcUa");
 //        String password = hr.getPassword();
 //        System.err.println("密码是"+password);
 
